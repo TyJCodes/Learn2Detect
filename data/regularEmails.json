@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "sender": "no-reply@microsoft.com",
+    "subject": "Security info was added",
+    "body": "The following security info was recently added to your Microsoft account: Phone ending in 44. If this was you, you can safely ignore this email."
+  },
+  {
+    "id": 2,
+    "sender": "support@github.com",
+    "subject": "[GitHub] Your password was changed",
+    "body": "The password for your GitHub account was recently changed. If you did not make this change, please contact support immediately."
+  },
+  {
+    "id": 3,
+    "sender": "noreply@google.com",
+    "subject": "Storage summary",
+    "body": "You are using 12 GB of your 15 GB of Google storage. If you run out of space, you won't be able to send or receive emails in Gmail."
+  },
+  {
+    "id": 4,
+    "sender": "notifications@linkedin.com",
+    "subject": "You appeared in 15 searches this week",
+    "body": "See the companies where people work who viewed your profile this week. Check out your full stats on LinkedIn."
+  },
+  {
+    "id": 5,
+    "sender": "customer.service@amazon.co.uk",
+    "subject": "Your Amazon.co.uk order #202-1234567-1234567",
+    "body": "Hello, thank you for your order. We’ll send a confirmation once your items ship. You can track your order in 'Your Account'."
+  },
+  {
+    "id": 6,
+    "sender": "no-reply@spotify.com",
+    "subject": "Your New Release Radar",
+    "body": "We’ve found some new music we think you'll love. Check out your personalized playlist in the Spotify app."
+  },
+  {
+    "id": 7,
+    "sender": "noreply@steampowered.com",
+    "subject": "A Note on Your Recent Steam Purchase",
+    "body": "Thank you for your recent purchase. Your receipt is below. This email serves as your official proof of purchase."
+  },
+  {
+    "id": 8,
+    "sender": "info@meetup.com",
+    "subject": "New events for Manchester Tech Scene",
+    "body": "There are 3 new events happening this week in your area that match your interests in Javascript and Web Development."
+  },
+  {
+    "id": 9,
+    "sender": "billing@adobe.com",
+    "subject": "Your Adobe Creative Cloud Invoice",
+    "body": "Your monthly payment for Creative Cloud has been processed successfully. Your receipt is attached to this email."
+  },
+  {
+    "id": 10,
+    "sender": "no-reply@dropbox.com",
+    "subject": "Shared 'Project_Files' with you",
+    "body": "A collaborator has invited you to edit the folder 'Project_Files' on Dropbox. Click the button below to view the shared content."
+  },
+  {
+    "id": 11,
+    "sender": "support@grammarly.com",
+    "subject": "Your weekly writing update",
+    "body": "Last week, you were more productive than 85% of Grammarly users! Check out your top grammar mistakes and how to fix them."
+  },
+  {
+    "id": 12,
+    "sender": "do-not-reply@trello.com",
+    "subject": "Due soon: Final Project Documentation",
+    "body": "The card 'Final Project Documentation' on the board 'Development Team' is due in 24 hours."
+  },
+  {
+    "id": 13,
+    "sender": "noreply@medium.com",
+    "subject": "Staff Picks: The future of AI in 2026",
+    "body": "Our editors have hand-picked these stories for you based on your interest in Machine Learning and Node.js."
+  },
+  {
+    "id": 14,
+    "sender": "no-reply@zoom.us",
+    "subject": "Meeting Scheduled: Project Sync",
+    "body": "A new Zoom meeting has been scheduled for tomorrow at 10:00 AM. Click the link in your calendar to join."
+  },
+  {
+    "id": 15,
+    "sender": "alerts@atlassian.com",
+    "subject": "[Jira] Issue Created: BUG-404",
+    "body": "A new issue has been assigned to you regarding the login page timeout. View the details on your Jira dashboard."
+  },
+  {
+    "id": 16,
+    "sender": "membership@costco.co.uk",
+    "subject": "Your membership is up for renewal",
+    "body": "Your annual Costco membership expires on April 15th. You can renew online or at any warehouse location."
+  },
+  {
+    "id": 17,
+    "sender": "news@discordapp.com",
+    "subject": "New features are here: Stage Channels",
+    "body": "Check out our latest update! Stage channels make it easier to manage audio conversations with large groups."
+  },
+  {
+    "id": 18,
+    "sender": "no-reply@uber.com",
+    "subject": "Your trip with Uber on Friday evening",
+    "body": "Thanks for riding. We hope you enjoyed your trip. Your total was £12.50. Rating your driver helps improve the service."
+  },
+  {
+    "id": 19,
+    "sender": "noreply@redditmail.com",
+    "subject": "Trending in r/node",
+    "body": "Check out the top posts today: 'How to optimize SQLite for high traffic' and 'My first Express app'."
+  },
+  {
+    "id": 20,
+    "sender": "support@slack.com",
+    "subject": "New login to Dev-Team Slack workspace",
+    "body": "A new login was detected on a Windows 11 device. If this was you, no action is needed."
+  },
+  {
+    "id": 21,
+    "sender": "account-update@apple.com",
+    "subject": "Your iCloud storage is full",
+    "body": "You have used all of your 5 GB of free iCloud storage. Your photos and documents will no longer sync across devices."
+  },
+  {
+    "id": 22,
+    "sender": "hello@duolingo.com",
+    "subject": "Don't lose your 50-day streak!",
+    "body": "It only takes 5 minutes to keep your Spanish streak alive. Hop on the app and finish one lesson before midnight!"
+  },
+  {
+    "id": 23,
+    "sender": "no-reply@weebly.com",
+    "subject": "Your website is live!",
+    "body": "Congratulations! Your new website is now published and accessible to the public. View it at your custom URL."
+  },
+  {
+    "id": 24,
+    "sender": "orders@deliveroo.co.uk",
+    "subject": "Your order from Five Guys",
+    "body": "The rider is on their way with your food! You can track their progress live in the Deliveroo app."
+  },
+  {
+    "id": 25,
+    "sender": "team@coursera.org",
+    "subject": "Course Recommendation: Advanced SQL",
+    "body": "Based on your recent completion of 'Intro to Databases', we think you'll find this Advanced SQL course valuable."
+  },
+  {
+    "id": 26,
+    "sender": "noreply@bitbucket.org",
+    "subject": "Pipeline succeeded: main branch",
+    "body": "The build for the 'learn2detect' repository was successful. All 15 automated tests passed."
+  },
+  {
+    "id": 27,
+    "sender": "support@transferwise.com",
+    "subject": "Your money is on its way",
+    "body": "We have received your GBP to EUR transfer. The funds should arrive in the recipient's account within 4 hours."
+  },
+  {
+    "id": 28,
+    "sender": "no-reply@eventbrite.com",
+    "subject": "Your tickets for Tech Hackathon 2026",
+    "body": "Your order is confirmed. You can find your digital tickets in the Eventbrite app or print the PDF attached to this email."
+  },
+  {
+    "id": 29,
+    "sender": "noreply@autotrader.co.uk",
+    "subject": "New matches for your saved search",
+    "body": "We found 5 new cars matching your search for 'Electric Hatchback' within 20 miles of your location."
+  },
+  {
+    "id": 30,
+    "sender": "newsletter@freecodecamp.org",
+    "subject": "Learn to use CSS Grid in 10 minutes",
+    "body": "This week's top tutorial covers everything you need to know about CSS Grid. Happy coding!"
+  }
+]

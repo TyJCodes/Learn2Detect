@@ -1,0 +1,250 @@
+[
+  {
+    "id": "000",
+    "difficulty": "Easy",
+    "sender": "support@paypa1-security.com",
+    "subject": "Your account is locked!",
+    "body": "Dear customer, we noticed suspicious activity. Please login at http://paypa1-update.com to verify your identity immediately or your funds will be frozen forever.",
+    "tips": "Check for 'Look-alike' domains (paypa1 vs paypal). Note the aggressive, threatening tone designed to make you panic."
+  },
+  {
+    "id": "001",
+    "difficulty": "Medium",
+    "sender": "hr-portal@company-internal.net",
+    "subject": "Updated Employee Handbook 2026",
+    "body": "Please review the new workplace conduct policy attached. All employees must sign the acknowledgement form by Friday to remain compliant with Q1 regulations.",
+    "tips": "Verify the domain suffix. Many companies use .com or .co.uk; attackers often use .net or .org for internal-sounding spoofs."
+  },
+  {
+    "id": "002",
+    "difficulty": "Hard",
+    "sender": "it.servicedesk@microsoft.com.security-fix.io",
+    "subject": "Critical Patch Required: CVE-2026-1042",
+    "body": "Our scans indicate your workstation is missing a critical security update. Please click 'Run Remote Patch' to authorize the IT department to deploy the fix.",
+    "tips": "This is 'Subdomain Trickery.' The real domain is 'security-fix.io', not 'microsoft.com'. Real IT departments rarely ask you to click a link to 'patch' your own PC."
+  },
+  {
+    "id": "003",
+    "difficulty": "Easy",
+    "sender": "lottery-winner@uk-national-rewards.com",
+    "subject": "You have won £5,000,000.00!!",
+    "body": "You are the lucky winner of the mid-week draw! To claim your prize, please reply with your bank details and home address so we can send the check.",
+    "tips": "If you didn't buy a ticket, you didn't win. Legitimate lotteries never ask for bank details via email to 'claim' a prize."
+  },
+  {
+    "id": "004",
+    "difficulty": "Medium",
+    "sender": "no-reply@amazon-shipping-update.com",
+    "subject": "Action Required: Failed Delivery for Order #882-192",
+    "body": "The courier attempted to deliver your package but no one was home. A $2.00 redelivery fee is required. Click here to pay and schedule a new time.",
+    "tips": "Smishing and Phishing often use 'Small Gains/Small Losses' (like a $2 fee) to lower your guard. Check the official Amazon app directly instead of clicking the link."
+  },
+  {
+    "id": "005",
+    "difficulty": "Hard",
+    "sender": "ceo.office@your-company-executive.com",
+    "subject": "Quick Task - Are you available?",
+    "body": "I'm tied up in a board meeting and need you to handle something sensitive for me. Can you process a wire transfer for a vendor? I'll send the details once you confirm.",
+    "tips": "This is 'Business Email Compromise' (BEC). It mimics a high-level executive. Always verify financial requests via a different communication channel, like a phone call."
+  },
+  {
+    "id": "006",
+    "difficulty": "Easy",
+    "sender": "security@face-book-login.com",
+    "subject": "Unusual Login Detected",
+    "body": "Someone just logged into your account from Moscow, Russia. If this wasn't you, click the 'Secure Account' button below to change your password.",
+    "tips": "Check the sender's address. 'face-book' with a hyphen is a common fake. Hover over the button to see if the link actually goes to facebook.com."
+  },
+  {
+    "id": "007",
+    "difficulty": "Medium",
+    "sender": "accounting@vendor-services-portal.com",
+    "subject": "Overdue Invoice: INV-99021",
+    "body": "Your payment for last month's cloud services is 5 days overdue. Please see the attached .zip file for the invoice and payment instructions.",
+    "tips": "Be extremely wary of .zip or .html attachments. These often contain malware or credential-harvesting forms disguised as documents."
+  },
+  {
+    "id": "008",
+    "difficulty": "Hard",
+    "sender": "notifications@linked-in.biz",
+    "subject": "You have 3 new private messages",
+    "body": "Recruiters from 'Global Tech' and 'Prime Solutions' are trying to reach you regarding a job opportunity. Login to view your inbox.",
+    "tips": "The .biz TLD (Top Level Domain) is rarely used by major platforms like LinkedIn (.com). This leverages 'FOMO' (Fear Of Missing Out) to make you click."
+  },
+  {
+    "id": "009",
+    "difficulty": "Easy",
+    "sender": "admin@microsoft-office-365.xyz",
+    "subject": "Mailbox Full: 48 New Messages Pending",
+    "body": "Your storage limit has been reached. You will not receive new emails until you upgrade your storage. Click 'Add 10GB' for free.",
+    "tips": "The .xyz extension is a cheap domain often used by scammers. Microsoft will never use a .xyz domain for official system alerts."
+  },
+  {
+    "id": "010",
+    "difficulty": "Medium",
+    "sender": "ebilling@netflix-account-info.com",
+    "subject": "Your membership is on hold",
+    "body": "We're having some trouble with your current billing information. We'll try again, but in the meantime, you may want to update your payment method.",
+    "tips": "Generic greetings ('Hi Customer' or no name at all) are a red flag. Real services usually have your name on file for billing issues."
+  },
+  {
+    "id": "011",
+    "difficulty": "Easy",
+    "sender": "rewards@starbuck-coffee-free.net",
+    "subject": "You have (1) unclaimed Latte!",
+    "body": "Congratulations! As a valued customer, we have a gift for you. Click here to claim your free drink voucher before it expires in 2 hours.",
+    "tips": "Notice the missing 's' in 'Starbucks' and the use of a .net domain. This 'Time-Limited' offer is a tactic to force a quick, unthinking click."
+  },
+  {
+    "id": "012",
+    "difficulty": "Medium",
+    "sender": "no-reply@disney-plus-billing.com",
+    "subject": "Payment Declined: Update your profile",
+    "body": "We were unable to process your last payment. To keep your subscription active and avoid service interruption, please update your credit card details immediately.",
+    "tips": "Subscription services are common targets. Instead of clicking the link, always go directly to the official website by typing the address into your browser."
+  },
+  {
+    "id": "013",
+    "difficulty": "Hard",
+    "sender": "payroll@yourcompany-portal.io",
+    "subject": "Review your Q1 Bonus Statement",
+    "body": "The Q1 bonus distributions have been finalized. Please log in to the employee portal to view your statement and confirm your banking details for the deposit.",
+    "tips": "This is highly effective 'Spear Phishing.' The .io domain is a red flag for internal corporate mail. Hover over the link to see if it actually leads to your company's HR system."
+  },
+  {
+    "id": "014",
+    "difficulty": "Easy",
+    "sender": "support@microsoft-security-alert.xyz",
+    "subject": "Virus Detected on your PC",
+    "body": "Windows Defender has found 3 high-risk threats on your system. Click 'Clean Now' to download our security tool and remove the infection.",
+    "tips": "Real security software (like Windows Defender) will never email you to tell you it found a virus. It uses system notifications, and it never asks you to download a 'cleaner' via a link."
+  },
+  {
+    "id": "015",
+    "difficulty": "Medium",
+    "sender": "invites@calendly-meetings.com",
+    "subject": "New Meeting: Interview with Sarah Jones",
+    "body": "You have been invited to a new meeting. Please click 'View Invite' to see the agenda and the video conference link.",
+    "tips": "Attackers use common business tools like Calendly or Zoom to hide malicious links. If you aren't expecting a meeting with this person, don't click."
+  },
+  {
+    "id": "016",
+    "difficulty": "Hard",
+    "sender": "admin@g00gle-workspace.com",
+    "subject": "Security Alert: New device logged into your Drive",
+    "body": "A device 'Linux/Chrome' accessed your Google Drive files. If this wasn't you, please review your activity and secure your files here.",
+    "tips": "This uses a 'Homograph' look-alike. Look closely at the domain: 'g00gle' uses zeros instead of the letter 'o'. This is a very common 'Hard' level trick."
+  },
+  {
+    "id": "017",
+    "difficulty": "Easy",
+    "sender": "irs-gov-refunds@tax-help.com",
+    "subject": "IRS Tax Refund Update",
+    "body": "Our records show you are owed a refund of $1,450.22. To receive your payment via direct deposit, please fill out the form at the link below.",
+    "tips": "Government agencies like the IRS or HMRC do not initiate contact via email to discuss refunds or personal financial information."
+  },
+  {
+    "id": "018",
+    "difficulty": "Medium",
+    "sender": "billing@adobe-subscriptions.net",
+    "subject": "Your Creative Cloud Invoice is ready",
+    "body": "Your monthly invoice for Adobe Creative Cloud has been generated. View the attached PDF for a breakdown of your charges.",
+    "tips": "Be cautious of unexpected invoices. Malicious PDFs can contain scripts that install malware. Check the official Adobe account page instead of opening attachments."
+  },
+  {
+    "id": "019",
+    "difficulty": "Hard",
+    "sender": "manager.name@yourcompany.com",
+    "subject": "Confidential Project - Request",
+    "body": "I'm in a meeting and can't take calls. I need you to purchase 5x £100 Apple gift cards for a client and send me the codes. I'll reimburse you by end of day.",
+    "tips": "The 'Gift Card Scam' relies on the victim wanting to help a boss. If a request involves buying gift cards or crypto, it is almost certainly a scam."
+  },
+  {
+    "id": "020",
+    "difficulty": "Easy",
+    "sender": "no-reply@instagram-help.me",
+    "subject": "Copyright Violation - Your account will be deleted",
+    "body": "A post on your account has violated our copyright terms. You have 24 hours to appeal this decision or your account will be permanently removed.",
+    "tips": "Fear is the main motivator here. Instagram uses the .com domain, not .me. They also don't typically delete accounts within 24 hours without multiple warnings."
+  },
+  {
+    "id": "021",
+    "difficulty": "Medium",
+    "sender": "it-support@internal-tickets.com",
+    "subject": "Ticket #8821: Password Reset Requested",
+    "body": "A password reset was requested for your corporate account. If you did not make this request, click here to cancel it and secure your account.",
+    "tips": "This is a clever trick. By clicking 'Cancel,' you are actually being led to a fake login page where the attacker steals your current password."
+  },
+  {
+    "id": "022",
+    "difficulty": "Hard",
+    "sender": "notifications@docusign.net.work-portal.com",
+    "subject": "Signature Required: Termination of Lease",
+    "body": "Please review and sign the document regarding your office space lease agreement. This document requires your digital signature by EOD.",
+    "tips": "The domain looks like DocuSign, but it's actually 'work-portal.com'. Attackers use complex subdomains to hide the real destination of the link."
+  },
+  {
+    "id": "023",
+    "difficulty": "Easy",
+    "sender": "lottery@mega-millions-winner.org",
+    "subject": "URGENT: Your lottery payout is waiting",
+    "body": "Dear Winner, your email address was selected for a $10,000,000 payout. Please provide your passport copy to begin the transfer.",
+    "tips": "Asking for identity documents like passports is a sign of 'Identity Theft' phishing. Never send sensitive documents to unverified email addresses."
+  },
+  {
+    "id": "024",
+    "difficulty": "Medium",
+    "sender": "service@fedex-express.net",
+    "subject": "Package Delivery Problem - Address Update",
+    "body": "We tried to deliver your parcel but the label was damaged. Please click here to verify your address so we can complete the delivery.",
+    "tips": "Commonly known as 'Smishing' (when sent via text) or Phishing. It relies on the fact that most people are usually expecting a package at some point."
+  },
+  {
+    "id": "025",
+    "difficulty": "Hard",
+    "sender": "colleague.name@outlook.com",
+    "subject": "Draft Proposal for Review",
+    "body": "Hey, I've been working on the draft for the new project. Can you take a look at the OneDrive link and let me know your thoughts?",
+    "tips": "This is 'Contact Spoofing.' Because it uses a personal-looking address (outlook.com) and friendly language, it feels safe. Always verify the link before clicking."
+  },
+  {
+    "id": "026",
+    "difficulty": "Easy",
+    "sender": "admin@apple-support-cloud.xyz",
+    "subject": "Your iCloud storage is almost full",
+    "body": "You have reached 99% of your 5GB limit. Photos and backups will stop working. Click here to get 50GB for free for one year.",
+    "tips": "Apple uses the 'icloud.com' or 'apple.com' domains. The .xyz extension is a major red flag for phishing campaigns."
+  },
+  {
+    "id": "027",
+    "difficulty": "Medium",
+    "sender": "hr-compliance@company-hr.info",
+    "subject": "Mandatory Diversity Training - 2026",
+    "body": "All staff must complete the mandatory diversity and inclusion training module. Click the link to log in and start the 30-minute course.",
+    "tips": "The .info domain is rarely used for internal company communications. Attackers use 'Mandatory' tasks to bypass your critical thinking."
+  },
+  {
+    "id": "028",
+    "difficulty": "Hard",
+    "sender": "security@bancofamerica.com",
+    "subject": "Suspicious Login Alert: New York, NY",
+    "body": "A login was detected from an unrecognized device in New York. If this was not you, please use our secure portal to lock your card and change your PIN.",
+    "tips": "This is a 'Visual Deception' attack. The domain is 'bancofamerica' (missing the 'k' in Bank). At a glance, it looks perfectly legitimate."
+  },
+  {
+    "id": "029",
+    "difficulty": "Easy",
+    "sender": "support@mcafee-security.net",
+    "subject": "Your subscription has EXPIRED!",
+    "body": "Your antivirus protection has ended. Your PC is now at risk of 2,431 threats. Renew now for 90% off to stay protected.",
+    "tips": "Scareware tactics use high numbers of 'threats' and aggressive formatting to make you act before you check the sender's authenticity."
+  },
+  {
+    "id": "030",
+    "difficulty": "Medium",
+    "sender": "noreply@uber-trips.me",
+    "subject": "Your Friday morning trip with Uber",
+    "body": "Thanks for riding! Your total was $45.20. If you didn't take this trip, click 'Dispute Charge' to report unauthorized activity.",
+    "tips": "This uses 'Negative Incentive.' By claiming you spent money you didn't, the attacker hopes you will click the 'Dispute' button in a panic."
+  }
+]

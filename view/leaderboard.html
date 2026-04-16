@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <title>Leaderboard</title>
+    </header>
+
+    <script src="ui-loader/ui-loader.js"></script>
+    <body>
+        <div id="navbar-placeholder"></div>
+        <div id="leaderboard-container" class="card shadow-sm border-0 rounded-4">
+            <div class="card-header bg-primary text-white p-4 rounded-top-4">
+                <h2 class="mb-0 fw-bold text-center">Global Leaderboard</h2>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">#</th>
+                                <th class="text-center">Username</th>
+                                <th class="text-center">Points</th>
+                                <th class="text-center">Rank</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardData"></tbody>
+                    </table>
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <button class="btn btn-outline-primary" onclick="previousPage()">Previous</button>
+                        <button class="btn btn-outline-primary" onclick="nextPage()">Next</button>
+                    </div>
+                </div>
+            </div>
+        <div id="footer-placeholder"></div>
+    </body>
+</html>
+
+
+<script>
+
+let currentPage =1;
+    async function generateLeaderboard(page = 1)
+    {
+        currentPage = Number(page) || 1;
+        const tableBody = document.getElementById('leaderboardData');
+
+        try
+        {
+            // send page number via the API route
+            const response = await fetch (`/api/leaderboard?page=${currentPage}`);
+            const data = await response.json();
+            
+            tableBody.innerHTML = "";
+
+            const startingNo = (currentPage - 1) * 10;
+            data.forEach((row, index) => 
+            {
+                const tr = document.createElement('tr');
+                tr.innerHTML =
+                `
+                <td class="text-center">${startingNo + index + 1}</td>
+                <td class="text-center">${row.username}</td>
+                <td class="text-center">${row.points}</td>
+                <td class="text-center">${row.rank}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+        catch (err)
+        {
+            tableBody.innerHTML = "<tr><td colspan='4'>Error loading data </td></tr>"
+        }
+    }
+    
+    function nextPage() 
+    {
+        generateLeaderboard(currentPage + 1); 
+    }
+
+    function previousPage() 
+    {
+        if(currentPage>1)
+        {
+            generateLeaderboard(currentPage - 1);
+        }
+    }
+    window.onload = generateLeaderboard(1); // load it when the window loads.
+</script>

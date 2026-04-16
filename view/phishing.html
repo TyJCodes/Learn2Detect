@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <title>Phishing Game</title>
+    </header>
+
+    <script src="ui-loader/ui-loader.js"></script>
+    <body class="bg-light">
+        <div id="navbar-placeholder"></div>
+            <div class="container-fluid vh-99 d-flex flex-column p-0">
+                <div class="row g-0 flex-grow-1">
+                    <div class="col-md-3 bg-secondary-subtle border-end p-4 d-flex flex-column gap-4">
+                        <section>
+                            <p class="small fw-bold">Correctly completing a phishing test will grant you points.</p>
+                            <p class="small fw-bold">However getting a phishing test wrong will make you lose points.</p>
+
+                            <div class="d-flex gap-2 my-3" id="Difficulties">
+                                <input type="radio" class="btn-check" id="easy_id" name="difficulty" value="Easy" onclick="generateRandomEmail('Easy')">
+                                <label class="btn btn-outline-secondary btn-sm flex-fill rounded-pill" for="easy_id">Easy</label>
+                                <input type="radio" class="btn-check" id="medium_id" name="difficulty" value="Medium" onclick="generateRandomEmail('Medium')">>
+                                <label class="btn btn-outline-secondary btn-sm flex-fill rounded-pill" for="medium_id">Medium</label>
+                                <input type="radio" class="btn-check" id="hard_id" name="difficulty" value="Hard" onclick="generateRandomEmail('Hard')">>
+                                <label class="btn btn-outline-secondary btn-sm flex-fill rounded-pill" for="hard_id">Hard</label>
+                            </div>
+                        </section>
+
+                        <div class="bg-dark-subtle rounded-5 p-4 text-center mt-2 shadow-sm">
+                            <div id="usernameForStats" class="fw-bold mb-1">Username loading...</div>
+                            <div id="pointsForStats" class="small">Points Loading...</div>
+                        </div>
+
+                        <div id="feedbackBox" class="bg-body-secondary rounded-4 p-4 flex-grow-1 mt-auto border shadow-inner" style="display: none;">
+                            <h6 id="feedbackMessage" class="fw-bold small"></h6>
+                            <p id="feedbackPoints" class="fw-bold small"></p>
+                            <p id="feedbackTips" class="text-muted text-danger small italic"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 d-flex flex-column bg-white" style="max-height: 60vh;">
+                        <div class="email-container p-5 overflow-auto flex-grow-1">
+                            <div id="PhishingEmail" class="card shadow-sm mx-auto" style="max-width: 60vw; max-height: 60vh;">
+                                <div class="card-header bg-white border-bottom p-3">
+                                    <div id="PhishingHeader"></div>
+                                    <div id="PhishingSender" class="mb-1"></div>
+                                    <div id="PhishingReciever" class="fw-bold small"><p> <b>To:</b> You</p></div>
+                                    <div id="CurrentDateTime" class="fw-bold small"><p><b>Date: </b></p></div>
+                                    <div id="PhishingSubject" class="fw-bold small"></div>
+                                </div>
+                                <div id="PhishingBody" class="card-body p-4" style="min-height: 550px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-secondary-subtle border-top py-4 d-flex justify-content-center gap-5">
+                            <div id="AnalysisBoxes"> 
+                                <button type="button" class="btn btn-light border shadow-sm rounded-pill px-5 fw-bold" onclick="checkAnswer(false)"> Normal Email </button>
+                                <button type="button" class="btn btn-light border shadow-sm rounded-pill px-5 fw-bold" onclick="checkAnswer(true)"> Phishing Email </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer-placeholder"></div>
+    </body>
+</html>
+
+<script>
+    let isPhishing = false; // Used to check if the current email is a phishing one, for scoring purposes
+    var now = new Date();
+    let dateTimeToday = now.toLocaleString();
+    document.getElementById("CurrentDateTime").innerHTML = "<p><b> Date: </b>" + dateTimeToday + "</p>"
+
+    let currentEmailTip  = "";
+    let feedbackTimer = "";
+
+
+
+    // Generating the emails
+    async function generatePhishingEmail(difficulty)
+    {
+        isPhishing = true;
+        const response = await fetch('../data/simplePhishingEmails.json'); // fetch the file
+
+        const phishingData = await response.json(); // convert text into json object
+        console.log(phishingData)
+
+        const filteredEmails = phishingData.filter(email => email.difficulty === difficulty) // filter the emails based on the difficulty that has been selected
+        console.log(filteredEmails)
+
+        const randomIndex = Math.floor(Math.random() * filteredEmails.length); // generate random number
+        const phishEmail = filteredEmails[randomIndex];
+        console.log(phishEmail)
+
+        currentEmailTip = phishEmail.tips;
+
+        document.getElementById('PhishingSender').innerHTML = "<p><b>From:" + phishEmail.sender + "</b></p>"; // add the sender information straight to the division
+        document.getElementById('PhishingSubject').innerHTML =  "<p><b>" + phishEmail.subject + "</b></p>" ; // add the subject information straight to the division
+        document.getElementById('PhishingBody').innerHTML = "<p>" + phishEmail.body + "</p>"; // add the body straight to the division
+    }
+
+    async function generateRegularEmail()
+    {
+        isPhishing=false;
+        const response = await fetch('../data/regularEmails.json'); // fetch the file
+
+        const regularData = await response.json(); // convert text into json object
+        console.log(regularData)
+
+        const randomIndex = Math.floor(Math.random() * regularData.length); // generate random number
+        const regularEmail = regularData[randomIndex];
+        console.log(regularEmail)
+
+
+        document.getElementById('PhishingSender').innerHTML = "<p><b>From:" + regularEmail.sender + "</b></p>"; // add the sender information straight to the division
+        document.getElementById('PhishingSubject').innerHTML =  "<p><b>" + regularEmail.subject + "</b></p>" ; // add the subject information straight to the division
+        document.getElementById('PhishingBody').innerHTML = "<p>" + regularEmail.body + "</p>"; // add the body straight to the division
+    }
+
+    function generateRandomEmail(difficulty)
+    {
+        const randomNumber = Math.random()
+        console.log("The random number is " + randomNumber)
+        if (randomNumber > 0.5)
+        {
+            console.log("Generating a regular email")
+            generateRegularEmail();
+        }
+        else
+        {
+            console.log("Generating a phishing email")
+            generatePhishingEmail(difficulty);
+        }
+    }
+
+    async function checkAnswer(usersGuess)
+    {
+        const statusMessage = document.getElementById
+
+        // find the selected difficulty via the checkboxes
+        const difficulty = getSelectedDifficulty()
+
+        const isCorrect = (usersGuess === isPhishing); // check if user is correct.
+        const pointsToGain = getPoints(difficulty, isCorrect);
+
+        if (isCorrect)
+        {
+            showFeedback(pointsToGain, true);
+            await updateScore(difficulty, true); // tells update score they got it correct
+        }
+        else
+        {
+            showFeedback(pointsToGain, false);
+            await updateScore(difficulty, false); // tells update score they got it wrong
+        }
+        updateUsersPoints();
+    generateRandomEmail(difficulty);
+    }
+
+    async function updateScore(difficulty, isCorrect) 
+    {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!user) return;
+
+        try
+        {
+            const response = await fetch('/api/update-score',
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        userID: user.id, 
+                        difficulty: difficulty,
+                        correct: isCorrect})
+                });
+            const data = await response.json();
+            console.log("Score updated with: ", data)
+        }
+        catch (err)
+        {
+            console.error("Score failed to update: ", err)
+        }
+    }
+    
+    function getPoints(selectedDifficulty, isCorrect)
+    {
+        const pointsPerDifficulty = {
+        'Easy': {win: 10, loss: -5},
+        'Medium': {win: 25, loss: -15},
+        'Hard': {win: 50, loss: -35}
+        }
+
+        // if correct is passed in as true take the win value from pointsPerDifficulty
+        const points = isCorrect ? pointsPerDifficulty[selectedDifficulty].win : pointsPerDifficulty[selectedDifficulty].loss;
+        return points;
+    }
+
+    function getSelectedDifficulty()
+    {
+        return document.querySelector('input[name="difficulty"]:checked').value;
+    }
+
+    function showFeedback(points, isCorrect)
+    {
+        if(feedbackTimer)
+        {
+            clearTimeout(feedbackTimer); // clear feedback timer so previous timer doesnt hide current feedback.
+        }
+        const feedBox = document.getElementById('feedbackBox');
+        const feedMessage = document.getElementById('feedbackMessage');
+        const feedPoints = document.getElementById('feedbackPoints');
+        const feedTips = document.getElementById('feedbackTips');
+
+        const correctSound = new Audio('assets/sounds/correct.mp3');
+        const incorrectSound = new Audio('assets/sounds/incorrect.mp3');
+
+        if(isCorrect)
+        {
+            correctSound.play();
+            
+            feedMessage.style.color = "green";
+            feedMessage.innerText = "Congratulations that was correct!";
+            feedPoints.innerText = points + "points gained.";
+            feedTips.innerText = "";
+        }
+        else
+        {
+            incorrectSound.play();
+
+            feedMessage.style.color = "red";
+            feedMessage.innerText = "Unlucky that was incorrect!";
+            feedPoints.innerText = points + "points lost.";
+            feedTips.innerText = currentEmailTip;
+        }
+
+        feedBox.style.display = "block";
+        const duration = isCorrect ? 3000 : 10000; // duration of feedback changes based on if user is correct.
+
+        feedbackTimer = setTimeout(() => {
+            feedBox.style.display = "none";
+        }, duration);
+    }
+
+
+    async function updateUsersPoints()
+    {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if(!user){ return; }
+
+        try
+        {
+            const response = await fetch (`api/user/stats/${user.id}`);
+            const stats = await response.json();
+
+            document.getElementById('pointsForStats').innerText="Points: " + stats.points;
+        }
+        catch (err)
+        {
+            console.error("Cant fetch stats" + err);
+        }
+    }
+
+    window.onload = function ()
+    {
+        const userString = localStorage.getItem('currentUser');
+        updateUsersPoints();
+
+        if (userString) 
+        {
+            const user = JSON.parse(userString);
+            document.getElementById('usernameForStats').innerText = "Welcome, " + user.username;
+        } 
+        else 
+        {
+            document.getElementById('usernameForStats').innerText = "login to see stats";
+        }
+
+        document.getElementById('easy_id').checked = true;
+        generateRandomEmail("Easy"); 
+    }
+</script>

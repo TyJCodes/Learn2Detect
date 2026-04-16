@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <title>My Stats</title>
+    </header>
+
+    <script src="ui-loader/ui-loader.js"></script>
+    <body class="bg-light">
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="display-4">Welcome back, <span id="displayUsername" class="text-primary">User</span>!</h1>
+                <p class="lead">Check your progress and climb the ranks.</p>
+                <img id="rankImage" src="assets/ranks/iron.png" alt="Rank Badge" style="width: 80px; height: 80px;">
+                <h3 id="displayRank" class="mt-2">Rank Loading...</h3>
+            </div>
+        </div>
+
+        <div class="row text-center mb-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="text-muted uppercase">Total Points</h5>
+                        <h2 id="displayPoints" class="fw-bold">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="text-muted">Current Streak</h5>
+                        <h2 id="displayCurrentStreak" class="fw-bold">0 Days</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="text-muted">Longest Streak</h5>
+                        <h2 id="displayLongestStreak" class="fw-bold">0 Days</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-sm border-0 p-4">
+                    <h3 class="mb-4">Proficiency Breakdown</h3>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-bold">Easy Emails</span>
+                            <span id="easyCountText">0 Count</span>
+                        </div>
+                        <div class="progress" style="height: 25px;">
+                            <div id="easyCountBar" class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-bold">Medium Emails</span>
+                            <span id="mediumCountText">0 Count</span>
+                        </div>
+                        <div class="progress" style="height: 25px;">
+                            <div id="mediumCountBar" class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="fw-bold">Hard Emails</span>
+                            <span id="hardCountText">0 Count</span>
+                        </div>
+                        <div class="progress" style="height: 25px;">
+                            <div id="hardCountBar" class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5 mb-5">
+            <a href="phishing.html" class="btn btn-primary btn-lg px-5 shadow">Get More Points!</a>
+        </div>
+    </div>
+
+     <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4"><u>Achievements</u></h1>
+                <div id="achievementGrid" class="d-flex flex-wrap gap-3"></div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    </body>
+    
+</html>
+
+<script>
+
+
+// STATS ----------------------------------------------------------
+const rankImages = 
+{
+    'Iron' : 'assets/ranks/iron.png',
+    'Bronze' : 'assets/ranks/bronze.png',
+    'Silver' : 'assets/ranks/silver.png',
+    'Gold' : 'assets/ranks/gold.png',
+    'Platinum' : 'assets/ranks/platinum.png',
+    'Diamond' : 'assets/ranks/diamond.png',
+    'Phisherman' : 'assets/ranks/phisherman.png'
+}
+    async function loadUserStats()
+    {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if(!user)
+        {
+            alert("Please log in to access this page.");
+            window.location.href = 'login.html';
+            return;
+        }
+
+        try
+        {
+            const response = await fetch(`/api/user/stats/${user.id}`);
+            const stats = await response.json();
+
+
+            // Username
+            document.getElementById('displayUsername').innerText = user.username;
+
+            // Rank
+            console.log("The rank name is " + stats.rank.split(' '));
+            document.getElementById('rankImage').src = rankImages[stats.rank.split(' ')[0]] || 'assets/ranks/iron.png'; // miss out the number from rank in order to get the image.
+            document.getElementById('displayRank').innerText = stats.rank;
+
+            // Points
+            document.getElementById('displayPoints').innerText = stats.points;
+
+            // Streaks
+            document.getElementById('displayCurrentStreak').innerText = stats.current_streak;
+            document.getElementById('displayLongestStreak').innerText = stats.longest_streak;
+
+            // Easy Count
+            const easyData = getDifficultyCountProgress(stats.easy_correct_count);
+            document.getElementById('easyCountText').innerText = stats.easy_correct_count + "/" + easyData.nextMilestone;
+            document.getElementById('easyCountBar').style.width = easyData.percentage + "%";
+            document.getElementById('easyCountBar').classList.add('dark-label-for-contrast');
+            document.getElementById('easyCountBar').innerText = stats.easy_correct_count + "/" + easyData.nextMilestone;
+
+            // Medium Count
+            const mediumData = getDifficultyCountProgress(stats.medium_correct_count);
+            document.getElementById('mediumCountText').innerText = stats.medium_correct_count + "/" + mediumData.nextMilestone;
+            document.getElementById('mediumCountBar').style.width = mediumData.percentage + "%";
+            document.getElementById('mediumCountBar').classList.add('dark-label-for-contrast');
+            document.getElementById('mediumCountBar').innerText = stats.medium_correct_count + "/" + mediumData.nextMilestone;
+            
+            // Hard Count
+            const hardData = getDifficultyCountProgress(stats.hard_correct_count);
+            document.getElementById('hardCountText').innerText = stats.hard_correct_count + "/" + hardData.nextMilestone;
+            document.getElementById('hardCountBar').style.width = hardData.percentage + "%";
+            document.getElementById('hardCountBar').classList.add('dark-label-for-contrast');
+            document.getElementById('hardCountBar').innerText = stats.hard_correct_count + "/" + hardData.nextMilestone;
+
+            // Load Achievements
+            loadAchievements(user.id);
+        }
+        catch (err)
+        {
+            console.error("Error loading the stats. ", err);
+        }
+    }
+    const difficultyCountMilestones = ['10','50','200'];
+
+    function getDifficultyCountProgress(currentCount)
+    {
+        // Finds next milestone for the user OR checks if the user has completed all the milestone
+        const nextMilestone = difficultyCountMilestones.find(milestone => milestone > currentCount) || difficultyCountMilestones[difficultyCountMilestones.length -1];
+        const percentage = (currentCount / nextMilestone) * 100;
+        return { nextMilestone, percentage};
+    }
+
+    // ACHIEVEMENTS ------------------------------------------------------
+    const achievementImages = 
+    {
+        // Easy Phishing
+        "Easy Apprentice": "assets/achievements/easy_apprentice.png",
+        "Easy Expert": "assets/achievements/easy_expert.png",
+        "Easy Master": "assets/achievements/easy_master.png",
+
+        // Medium Phishing
+        "Medium Apprentice": "assets/achievements/medium_apprentice.png",
+        "Medium Expert": "assets/achievements/medium_expert.png",
+        "Medium Master": "assets/achievements/medium_master.png",
+
+        // Hard phishing
+        "Hard Apprentice": "assets/achievements/hard_apprentice.png",
+        "Hard Expert": "assets/achievements/hard_expert.png",
+        "Hard Master": "assets/achievements/hard_master.png",
+
+        // Rank Based
+        "Phish Hunter": "assets/achievements/phish_hunter.png",
+        "Cyber Master": "assets/achievements/cyber_master.png",
+        "The Human Firewall": "assets/achievements/the_human_firewall.png",
+
+        // Points Based
+        "Halfway there": "assets/achievements/halfway_there.png",
+        "So close...": "assets/achievements/so_close.png",
+        "Above and beyond": "assets/achievements/above_and_beyond.png",
+
+        // Login Streak
+        "Player": "assets/achievements/player.png",
+        "Consistent": "assets/achievements/consistent.png",
+        "Grinder": "assets/achievements/grinder.png"
+    }
+
+    async function loadAchievements(userID)
+    {
+        const response = await fetch(`/api/user-achievement/${userID}`);
+        const earnedAchievements = await response.json();
+
+        const achievementGrid = document.getElementById('achievementGrid');
+        achievementGrid.innerHTML = '';
+
+        earnedAchievements.forEach(achievement => 
+        {
+            const imgPath = achievementImages[achievement.badge_name] || 'assets/badges/default.png';
+            achievementGrid.innerHTML +=
+            `<div class="col text-center">
+                <img src ="${imgPath}" style="width: 80px;" alt="${achievement.badge_name}">
+                <p class="mt-2 fw-bold">${achievement.badge_name}</p>
+                <small class="text-muted">Earned: ${new Date(achievement.date_earned).toLocaleDateString()}</small>
+            </div>`;
+        });
+    }
+
+    window.onload = loadUserStats;
+</script>
