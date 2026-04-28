@@ -8,6 +8,7 @@
         <title>Phishing Game</title>
     </header>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="ui-loader/ui-loader.js"></script>
     <body class="bg-light">
         <div id="navbar-placeholder"></div>
@@ -86,16 +87,16 @@
         const response = await fetch('../data/simplePhishingEmails.json'); // fetch the file
 
         const phishingData = await response.json(); // convert text into json object
-        console.log(phishingData)
+        //console.log(phishingData)
 
         const filteredEmails = phishingData.filter(email => email.difficulty === difficulty) // filter the emails based on the difficulty that has been selected
-        console.log(filteredEmails)
+        //console.log(filteredEmails)
 
         const randomIndex = Math.floor(Math.random() * filteredEmails.length); // generate random number
-        const phishEmail = filteredEmails[randomIndex];
-        console.log(phishEmail)
+        const phishEmail = filteredEmails[randomIndex]; // chooses a singular emal
+        //console.log(phishEmail)
 
-        currentEmailTip = phishEmail.tips;
+        currentEmailTip = phishEmail.tips; // store the tips so they can be displayed if user gets question incorrect
 
         document.getElementById('PhishingSender').innerHTML = "<p><b>From:" + phishEmail.sender + "</b></p>"; // add the sender information straight to the division
         document.getElementById('PhishingSubject').innerHTML =  "<p><b>" + phishEmail.subject + "</b></p>" ; // add the subject information straight to the division
@@ -108,11 +109,11 @@
         const response = await fetch('../data/regularEmails.json'); // fetch the file
 
         const regularData = await response.json(); // convert text into json object
-        console.log(regularData)
+        //console.log(regularData)
 
         const randomIndex = Math.floor(Math.random() * regularData.length); // generate random number
-        const regularEmail = regularData[randomIndex];
-        console.log(regularEmail)
+        const regularEmail = regularData[randomIndex]; // chooses a singular email
+        //console.log(regularEmail)
 
 
         document.getElementById('PhishingSender').innerHTML = "<p><b>From:" + regularEmail.sender + "</b></p>"; // add the sender information straight to the division
@@ -122,7 +123,7 @@
 
     function generateRandomEmail(difficulty)
     {
-        const randomNumber = Math.random()
+        const randomNumber = Math.random() // gets a random number from 0 - 1 e.g 0.4957849
         console.log("The random number is " + randomNumber)
         if (randomNumber > 0.5)
         {
@@ -219,18 +220,18 @@
 
         if(isCorrect)
         {
-            correctSound.play();
+            correctSound.play(); // correct sound
             
-            feedMessage.style.color = "green";
+            feedMessage.style.color = "green"; // show correct feedback
             feedMessage.innerText = "Congratulations that was correct!";
             feedPoints.innerText = points + "points gained.";
             feedTips.innerText = "";
         }
         else
         {
-            incorrectSound.play();
+            incorrectSound.play(); // incorrect sound
 
-            feedMessage.style.color = "red";
+            feedMessage.style.color = "red"; // show wrong feedback
             feedMessage.innerText = "Unlucky that was incorrect!";
             feedPoints.innerText = points + "points lost.";
             feedTips.innerText = currentEmailTip;

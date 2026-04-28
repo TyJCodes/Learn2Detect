@@ -77,7 +77,7 @@ db.run(rankUpdateSQL, [rank, userID], (err)=>
     }
     else
     {
-        console.log("User " + userID + " now has " + currentPoints + " points giving them the " + rank + " rank.")
+        console.log("User " + userID + " now has " + currentPoints + " points giving them the " + rank + " rank.");
     }
 })
 }
